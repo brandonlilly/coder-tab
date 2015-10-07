@@ -4,18 +4,20 @@ import { devTools } from 'redux-devtools';
 import createHistory from 'history/lib/createBrowserHistory';
 import routes from '../routes';
 import thunk from 'redux-thunk';
-// import api from '../middleware/api';
+import remoteApi from '../middleware/remote';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
 
-const finalCreateStore = compose(
-  applyMiddleware(thunk),
-  reduxReactRouter({ routes, createHistory }),
-  applyMiddleware(createLogger()),
-  devTools()
-)(createStore);
 
-export default function configureStore(initialState) {
+export default function configureStore(initialState, socket) {
+  const finalCreateStore = compose(
+    applyMiddleware(thunk),
+    applyMiddleware(remoteApi(socket)),
+    reduxReactRouter({ routes, createHistory }),
+    applyMiddleware(createLogger()),
+    devTools()
+  )(createStore);
+
   const store = finalCreateStore(rootReducer, initialState);
 
   if (module.hot) {
