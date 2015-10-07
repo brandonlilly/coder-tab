@@ -1,0 +1,25 @@
+body {
+  background: #fefefe;
+  color: #1e2e2f;
+  font-family: sans-serif;
+  padding: 60px;
+}
+
+.codeEditor {
+
+  textarea {
+    font-size: 16px;
+    background: #f9f9f9;
+    width: 500px;
+    height: 400px;
+    padding: 10px;
+    font-family: 'Inconsolata', monospace;
+    border: none;
+    outline: none;
+  }
+}
+
+.ReactCodeMirror {
+	border: 1px solid #ccc;
+  font-family: 'Inconsolata', monospace !important;
+}

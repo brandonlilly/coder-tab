@@ -8,6 +8,7 @@ const config = {
   entry: [
     'webpack-hot-middleware/client',
     './app/index',
+    './styles/main',
   ],
   output: {
     filename: 'bundle.js',
@@ -26,6 +27,15 @@ const config = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loaders: ['babel']
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style!css!sass?outputStyle=expanded&imagePath=/img&includePaths[]=' +
+        path.resolve(__dirname, './css'),
       },
     ]
   },
