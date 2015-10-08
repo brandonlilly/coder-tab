@@ -39,9 +39,9 @@ class CodeMirror extends Component {
 			this.codeMirror.setValue(nextProps.value);
 		}
 
-    if (typeof nextProps.options === 'object') {
-      for (optionName in nextProps.options) {
-        this.codeMirror.setOption(optionName, nextProps.options[optionName]);
+    if (nextProps.options) {
+      for (option in nextProps.options) {
+        this.codeMirror.setOption(option, nextProps.options[option]);
       }
     }
 	}

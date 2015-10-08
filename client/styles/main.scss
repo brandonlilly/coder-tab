@@ -2,29 +2,77 @@ body {
   background: #fefefe;
   color: #1e2e2f;
   font-family: sans-serif;
-  padding: 60px;
+  padding: 0;
+  margin: 0;
 }
 
-.codeEditor {
+.splitView {
+  position: absolute;
+  top: 50px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
 
-  textarea {
-    font-size: 16px;
-    background: #f9f9f9;
-    width: 500px;
-    height: 400px;
-    padding: 10px;
-    font-family: 'Inconsolata', monospace;
-    border: none;
-    outline: none;
-  }
+  background: #2b313b;
 }
 
 .ReactCodeMirror {
-	border: 1px solid #ccc;
+  position: absolute;
   font-family: 'Inconsolata', monospace !important;
-  max-width: 600px;
+  height: 100%;
+  width: 50%;
+
+  border-right: 1px solid #444;
+
+  .CodeMirror {
+    height: 100%;
+  }
 }
 
-.CodeMirror {
-  height: 500px;
+.codeConsole {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  display: block;
+
+  color: white;
+  padding: 10px;
+
+  .console {
+    cursor: text;
+
+    .jqconsole {
+      padding: 10px;
+      font-size: 16px;
+      color: #C1C5CA;
+      font-family: 'Inconsolata', monospace !important;
+    }
+    .jqconsole-cursor {
+      background-color: gray;
+    }
+    .jqconsole-blurred .jqconsole-cursor {
+      background-color: #666;
+    }
+    .jqconsole-prompt, .jqconsole-old-prompt {
+      font-weight: normal;
+    }
+
+    .jqconsole-input {
+      color: #dd0;
+    }
+    .jqconsole-old-input {
+      color: #bb0;
+      font-weight: normal;
+    }
+    .jqconsole-output {
+      color: #FFCB65;
+      font-family: 'Inconsolata', monospace !important;
+
+    }
+    .jqc-error {
+      color: #C55555;
+    }
+  }
+
 }

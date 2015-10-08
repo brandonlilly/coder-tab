@@ -63,7 +63,7 @@ $def-red: #DC6F82;
 .cm-s-rubella .cm-quote { color: #24C2C7; }
 
 .cm-s-rubella .cm-keyword { color: $keyword-blue; }
-.cm-s-rubella .cm-atom { color: #CF7EA9; }
+.cm-s-rubella .cm-atom { color: $def-red; }
 .cm-s-rubella .cm-number { color: $orange; }
 .cm-s-rubella .cm-def { color: $def-red; }
 .cm-s-rubella .cm-variable { color: $very-light-gray }
@@ -99,9 +99,6 @@ $def-red: #DC6F82;
   line-height: 1.30em;
   color: $very-light-gray;
   background-color: $dark-gray-blue;
-  -webkit-box-shadow: inset 0 0 10px black;
-  -moz-box-shadow: inset 0 0 10px black;
-  box-shadow: inset 0 0 10px black;
   font-family: 'Inconsolata', monospace;
   font-size: 16px;
 }
