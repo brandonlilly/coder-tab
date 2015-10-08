@@ -22,4 +22,9 @@ body {
 .ReactCodeMirror {
 	border: 1px solid #ccc;
   font-family: 'Inconsolata', monospace !important;
+  max-width: 600px;
+}
+
+.CodeMirror {
+  height: 500px;
 }

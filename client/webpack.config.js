@@ -8,7 +8,7 @@ const config = {
   entry: [
     'webpack-hot-middleware/client',
     './app/index',
-    './styles/main',
+    './styles/index',
   ],
   output: {
     filename: 'bundle.js',

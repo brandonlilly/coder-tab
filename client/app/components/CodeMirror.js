@@ -1,7 +1,6 @@
 // www.github.com/JedWatson/react-codemirror
 
 import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
 import { fromTextArea } from 'codemirror';
 import { classSet } from '../utils';
 
@@ -22,8 +21,7 @@ class CodeMirror extends Component {
   componentDidMount () {
     const { value, options } = this.props;
 
-    const textareaNode = findDOMNode(this.refs.textarea);
-    this.codeMirror = fromTextArea(textareaNode, options);
+    this.codeMirror = fromTextArea(this.refs.textarea, options);
     this.codeMirror.on('change', this.codemirrorValueChanged.bind(this));
     this.codeMirror.on('focus', () => this.focusChanged(true));
     this.codeMirror.on('blur', () => this.focusChanged(false));
