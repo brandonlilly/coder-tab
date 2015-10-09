@@ -19,7 +19,10 @@ class CodeMirror extends Component {
   }
 
   componentDidMount () {
-    const { value, options } = this.props;
+    const { value, options, onRun } = this.props;
+
+    options.extraKeys["Ctrl-S"] = onRun;
+    options.extraKeys["Cmd-S"] = onRun;
 
     this.codeMirror = fromTextArea(this.refs.textarea, options);
     this.codeMirror.on('change', this.codemirrorValueChanged.bind(this));

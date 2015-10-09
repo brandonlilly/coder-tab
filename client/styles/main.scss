@@ -59,16 +59,14 @@ body {
     }
 
     .jqconsole-input {
-      color: #dd0;
+      color: red;
     }
     .jqconsole-old-input {
-      color: #bb0;
+      color: pink;
       font-weight: normal;
     }
     .jqconsole-output {
       color: #FFCB65;
-      font-family: 'Inconsolata', monospace !important;
-
     }
     .jqc-error {
       color: #C55555;

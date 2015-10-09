@@ -3,27 +3,43 @@ import jqconsole from 'jq-console';
 
 class CodeConsole extends Component {
 
-  startPrompt() {
-    return this.jqconsole.Prompt(true, (input) => {
-      try {
-        let output = eval(input) + '\n';
-        this.jqconsole.Write(output, 'jqconsole-output');
+  handleSubmit(input) {
+    try {
+      let output = window.eval(input);
+      if (typeof output !== 'undefined') {
+        this.write(output)
       }
-      catch(e) {
-        this.jqconsole.Write(e + '\n', 'jqconsole-output jqc-error');
-      }
-      this.startPrompt();
-    });
+    }
+    catch (e) {
+      this.write(e, 'jqc-error');
+    }
+
+    this.props.onSubmit && this.props.onSubmit(input);
+  }
+
+  write(output, className) {
+    this.jqconsole.Write(output + '\n', `jqconsole-output ${className}`);
   }
 
   componentDidMount() {
-    console.log('jqref', this.refs.jqconsole);
     this.jqconsole = $(this.refs.jqconsole).jqconsole('Console initialized.\n', '> ');
-    this.startPrompt();
+
+    const handler = () => {
+      this.jqconsole.Prompt(true, (input) => {
+        this.handleSubmit(input);
+        handler();
+      });
+    }
+    handler();
+  }
+
+  prompt() {
+    this.jqconsole.Prompt(false, (input) => {
+
+    })
   }
 
   render() {
-
     return (
       <div className="codeConsole">
         <div className="jqConsoleWrapper">

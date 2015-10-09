@@ -39,6 +39,12 @@ class App extends Component {
     this.setState({ code });
   }
 
+  run() {
+    const { code } = this.state;
+    const { codeConsole } = this.refs;
+    codeConsole.handleSubmit(code);
+  }
+
   render() {
     const { children } = this.props;
     const { code } = this.state;
@@ -68,8 +74,11 @@ class App extends Component {
             value={code}
             options={options}
             onChange={this.updateCode.bind(this)}
+            onRun={() => this.run()}
           />
-          <CodeConsole/>
+        <CodeConsole
+          ref="codeConsole"
+          />
         </SplitView>
       </div>
     );
