@@ -3,22 +3,33 @@ import jqconsole from 'jq-console';
 
 class CodeConsole extends Component {
 
-  handleSubmit(input) {
+  handleSubmit(input, forced = false) {
+    let log = console.log
+    console.log = (...args) => { this.write(args.join(' ')); }
+
+    if (forced) {
+      this.write('> ', 'jqconsole-old-prompt');
+      this.write('Running...', 'jqconsole-old-prompt');
+    }
     try {
-      let output = window.eval(input);
-      if (typeof output !== 'undefined') {
-        this.write(output)
+      const babelCode = babel(input).code.replace("'use strict';", '');
+      let output = window.eval(babelCode);
+      if (typeof output !== 'undefined' && output !== "use strict") {
+        this.write(output, 'jqconsole-output')
       }
     }
     catch (e) {
-      this.write(e, 'jqc-error');
+      console.error(e);
+      this.write(e, 'jqconsole-output jqc-error');
     }
+
+    console.log = log;
 
     this.props.onSubmit && this.props.onSubmit(input);
   }
 
   write(output, className) {
-    this.jqconsole.Write(output + '\n', `jqconsole-output ${className}`);
+    this.jqconsole.Write(output + '\n', className);
   }
 
   componentDidMount() {

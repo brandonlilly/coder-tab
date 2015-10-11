@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CodeEditor, CodeMirror, SplitView, CodeConsole } from '../components';
+import { CodeMirror, SplitView, CodeConsole } from '../components';
 
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/ruby/ruby');
@@ -11,7 +11,7 @@ require('codemirror/addon/selection/active-line');
 const initial = `// This is a test!
 
 function test(arg) {
-  render() {
+  if (arg) {
     const { children } = this.props;
     const { code } = this.state;
 
@@ -20,6 +20,7 @@ function test(arg) {
       smartIndent: true,
       tabSize: 2,
       keyMap: 'sublime',
+      render() {},
     };
 
     return ( null );
@@ -42,7 +43,7 @@ class App extends Component {
   run() {
     const { code } = this.state;
     const { codeConsole } = this.refs;
-    codeConsole.handleSubmit(code);
+    codeConsole.handleSubmit(code, true);
   }
 
   render() {
@@ -75,10 +76,10 @@ class App extends Component {
             options={options}
             onChange={this.updateCode.bind(this)}
             onRun={() => this.run()}
-          />
-        <CodeConsole
-          ref="codeConsole"
-          />
+            />
+          <CodeConsole
+            ref="codeConsole"
+            />
         </SplitView>
       </div>
     );
